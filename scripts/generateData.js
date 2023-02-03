@@ -20,6 +20,7 @@ function generateData () {
             const dayName = dateFormatter.format(currentDate).replace('/', '.');
             data[timeFormatter.format(currentDate)][dayName] = {
                 booked: Math.random() - 0.8 > 0,
+                bookedByYou:  Math.random() - 0.96 > 0,
                 value: currentDate,
             };
         }

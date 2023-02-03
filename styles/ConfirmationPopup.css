@@ -4,13 +4,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    opacity: 1;
+    transition: opacity 0.3s;
 }
 
 .ConfirmationPopup:not(.ConfirmationPopup--open) {
-    height: 0;
-    width: 0;
     opacity: 0;
-    z-index: -1;
     pointer-events: none;
 }
 
@@ -32,6 +31,11 @@
     border-radius: 0.3em;
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.25);
     min-width: 250px;
+    transition: transform 0.3s;
+}
+
+.ConfirmationPopup:not(.ConfirmationPopup--open) .ConfirmationPopup__content {
+    transform: scale(0.9) rotateX(-40deg);
 }
 
 .ConfirmationPopup__close {

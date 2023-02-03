@@ -7,7 +7,11 @@ class ConfirmationPopup {
             this.close();
         })
 
-        this.infoElem = this.elem.querySelector('.ConfirmationPopup__info');
+        this.timeElem = this.elem.querySelector('.ConfirmationPopup__time');
+    }
+
+    open() {
+        this.elem.classList.toggle('ConfirmationPopup--open');
 
         this.escapeHandler = (event) => {
             if(event.key === 'Escape') {
@@ -18,16 +22,12 @@ class ConfirmationPopup {
         document.addEventListener('keydown', this.escapeHandler)
     }
 
-    open() {
-        this.elem.classList.toggle('ConfirmationPopup--open');
-    }
-
     close() {
         document.removeEventListener('keydown', this.escapeHandler);
         this.elem.classList.toggle('ConfirmationPopup--open');
     }
 
     changeInfo(date, time) {
-        this.infoElem.innerHTML = `Your appointment: ${date}, ${time}`;
+        this.timeElem.innerHTML = `${date}, ${time}`;
     }
 }

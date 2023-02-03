@@ -55,6 +55,12 @@ table {
     background-color: var(--accent_hover);
 }
 
+.Calendar__timeSlot--bookedByYou .Calendar__timeLabel {
+    color: var(--accent);
+    background-color: var(--text_primary);
+    font-weight: normal;
+}
+
 .Calendar__timeRadio:disabled + .Calendar__timeLabel {
     background-color: var(--bg_disable);
     color: transparent;

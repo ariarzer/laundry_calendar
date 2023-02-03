@@ -26,9 +26,12 @@
         <table id="calendar" class="Calendar">
         </table>
 
-        <div class="ConfirmationPopup">
+        <div class="ConfirmationPopup" id="booking_popup">
             <div class="ConfirmationPopup__content">
-                <div class="ConfirmationPopup__info"></div>
+                <div class="ConfirmationPopup__info">
+                    Your appointment:
+                    <span class="ConfirmationPopup__time"></span>
+                </div>
                 <label class="DryingMachine">
                     <span class="DryingMachine__label">Include drying machine:</span>
                     <input type="checkbox" name="drying_machine" class="DryingMachine__input">
@@ -39,6 +42,21 @@
                     <button type="button" class="Button ConfirmationPopup__close">Close</button>
 
                     <button type="submit" class="Button">Book!</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ConfirmationPopup" id="change_popup">
+            <div class="ConfirmationPopup__content">
+                <div class="ConfirmationPopup__info">
+                    This is our appointment for
+                    <span class="ConfirmationPopup__time"></span>.
+                    Do you want to change it?
+                </div>
+                <div class="ConfirmationPopup__footer">
+                    <button type="button" class="Button ConfirmationPopup__close">Close</button>
+
+                    <button type="button" class="Button">Change</button>
                 </div>
             </div>
         </div>

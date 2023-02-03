@@ -6,9 +6,11 @@ function generateCalendarHTML(data) {
 
     const bodyElem = document.createElement('tbody');
 
-    const confirmationPopupElem = document.querySelector('.ConfirmationPopup');
+    const bookingPopupElem = document.getElementById('booking_popup');
+    const changePopupElem = document.getElementById('change_popup');
 
-    const confirmationPopup = new ConfirmationPopup(confirmationPopupElem);
+    const bookingPopup = new ConfirmationPopup(bookingPopupElem);
+    const changePopup = new ConfirmationPopup(changePopupElem);
 
     Object.keys(data).forEach((timeRow) => {
         const rowElem = document.createElement('tr');
@@ -17,7 +19,8 @@ function generateCalendarHTML(data) {
         Object.keys(data[timeRow]).forEach((dateRow) => {
             const {
                 booked,
-                value
+                value,
+                bookedByYou
             } = data[timeRow][dateRow];
 
             dateSet.add(dateRow);
@@ -27,6 +30,9 @@ function generateCalendarHTML(data) {
 
             const labelElem = document.createElement('label');
             labelElem.classList.add('Calendar__timeSlot');
+            if (bookedByYou) {
+                labelElem.classList.add('Calendar__timeSlot--bookedByYou');
+            }
 
             const inputElem = document.createElement('input');
             inputElem.type = 'radio';
@@ -35,10 +41,19 @@ function generateCalendarHTML(data) {
             inputElem.required = true;
             inputElem.disabled = booked;
             inputElem.classList.add('Calendar__timeRadio');
-            inputElem.addEventListener('click', () => {
-                confirmationPopup.changeInfo(dateRow, timeRow);
-                confirmationPopup.open();
-            })
+            if (bookedByYou) {
+                inputElem.addEventListener('click', () => {
+                    event.preventDefault();
+                    changePopup.changeInfo(dateRow, timeRow);
+                    changePopup.open();
+                })
+
+            } else {
+                inputElem.addEventListener('click', () => {
+                    bookingPopup.changeInfo(dateRow, timeRow);
+                    bookingPopup.open();
+                })
+            }
 
             labelElem.appendChild(inputElem);
 
