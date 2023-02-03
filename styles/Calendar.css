@@ -52,6 +52,10 @@ table {
     transition: background-color 0.3s;
 }
 
+.Calendar__timeRadio:focus {
+    outline: none;
+}
+
 .Calendar__timeLabel:hover ,
 .Calendar__timeRadio:focus + .Calendar__timeLabel {
     background-color: var(--accent_hover);
