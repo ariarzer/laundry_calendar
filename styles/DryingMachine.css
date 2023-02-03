@@ -1,6 +1,6 @@
 .DryingMachine {
     display: block;
-
+    margin-block: 0.4em;
 }
 
 .DryingMachine__label {
@@ -13,6 +13,7 @@
 
 .DryingMachine__comment {
     display: none;
+    color: var(--text_secondary);
 }
 
 .DryingMachine__input:checked + .DryingMachine__comment {

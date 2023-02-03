@@ -7,5 +7,18 @@
 
 :root {
     --text_invert: white;
+    --text_primary: #020f26;
+    --text_secondary: white;
+    --bg_primary: white;
     --accent: #769cff;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text_invert: white;
+        --text_primary: #d8e7ff;
+        --text_secondary: #7795c5;
+        --bg_primary: #071c38;
+        --accent: #557ad3;
+    }
 }

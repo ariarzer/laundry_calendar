@@ -3,16 +3,24 @@
     font-size: clamp(16px, 2vw, 24px);
     line-height: 1.6;
     accent-color: var(--accent);
+    color: var(--text_primary);
+    background-color: var(--bg_primary);
 
     display: flex;
     align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 body {
     margin: 5vh auto;
-    max-width: 1000px;
-    width: 50vw;
-    min-width: min(500px, 90vw);
 }
 
+h1:first-child {
+    margin-top: 0;
+}
+
+h1 {
+    text-align: center;
+}
 
