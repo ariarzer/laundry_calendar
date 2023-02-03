@@ -1,0 +1,51 @@
+.ConfirmationPopup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.ConfirmationPopup:not(.ConfirmationPopup--open) {
+    height: 0;
+    width: 0;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.ConfirmationPopup::before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    background-color: rgba(24, 36, 56, 0.7);
+    top: calc(-50vh + 50%);
+    left: calc(-50vw + 50%);
+    backdrop-filter: blur(2px);
+    height: 100vh;
+    width: 100vw;
+}
+
+.ConfirmationPopup__content {
+    background-image: linear-gradient(104.04deg, #182438 0%, #30326D 100%);
+    padding: 1.5em 2em;
+    border-radius: 0.3em;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.25);
+    min-width: 250px;
+}
+
+.ConfirmationPopup__close {
+    color: var(--text_secondary);
+    background-color: transparent;
+    border: 2px solid currentColor;
+}
+
+.ConfirmationPopup__info {
+    font-size: 1.5em;
+}
+
+.ConfirmationPopup__footer {
+    margin-block-start: 1.5em;
+    display: flex;
+    justify-content: space-around;
+}

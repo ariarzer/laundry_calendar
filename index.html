@@ -20,23 +20,33 @@
     <link rel="stylesheet" href="./styles/index.css">
 </head>
 <body>
-    <h1>Book you laundry time!</h1>
+    <h1>Book you time</h1>
 
     <form action="https://laundry.fi/book">
         <table id="calendar" class="Calendar">
         </table>
 
-        <label class="DryingMachine">
-            <span class="DryingMachine__label">I want to book drying machine :</span>
-            <input type="checkbox" name="drying_machine" class="DryingMachine__input">
-            <span class="DryingMachine__comment">Drying machine will be booked for half hour after you laundry appointment.</span>
-        </label>
+        <div class="ConfirmationPopup">
+            <div class="ConfirmationPopup__content">
+                <div class="ConfirmationPopup__info"></div>
+                <label class="DryingMachine">
+                    <span class="DryingMachine__label">Include drying machine:</span>
+                    <input type="checkbox" name="drying_machine" class="DryingMachine__input">
+                    <span class="DryingMachine__comment">Drying machine will be booked for half hour after you laundry appointment.</span>
+                </label>
 
-        <button type="submit">Book!</button>
+                <div class="ConfirmationPopup__footer">
+                    <button type="button" class="ConfirmationPopup__close">Close</button>
+
+                    <button type="submit">Book!</button>
+                </div>
+            </div>
+        </div>
     </form>
 
     <script src="scripts/generateCalendarHTML.js"></script>
     <script src="scripts/generateData.js"></script>
+    <script src="scripts/ConfirmationPopup.js"></script>
     <script src="scripts/index.js"></script>
 </body>
 </html>

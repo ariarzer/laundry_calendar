@@ -6,13 +6,13 @@ function generateCalendarHTML(data) {
 
     const bodyElem = document.createElement('tbody');
 
+    const confirmationPopupElem = document.querySelector('.ConfirmationPopup');
+
+    const confirmationPopup = new ConfirmationPopup(confirmationPopupElem);
+
     Object.keys(data).forEach((timeRow) => {
         const rowElem = document.createElement('tr');
         rowElem.classList.add('Calendar__tr');
-        const thElem = document.createElement('th');
-        thElem.innerHTML = timeRow;
-
-        rowElem.appendChild(thElem);
 
         Object.keys(data[timeRow]).forEach((dateRow) => {
             const {
@@ -23,16 +23,40 @@ function generateCalendarHTML(data) {
             dateSet.add(dateRow);
 
             const tdElem = document.createElement('td');
-            tdElem.classList.add(booked ? 'booked' : 'free');
+            tdElem.classList.add('Calendar__td');
+
+            const labelElem = document.createElement('label');
+            labelElem.classList.add('Calendar__timeSlot');
 
             const inputElem = document.createElement('input');
             inputElem.type = 'radio';
             inputElem.name = 'laundry_slot';
             inputElem.value = value.getTime();
             inputElem.required = true;
-            inputElem.disabled = booked
+            inputElem.disabled = booked;
+            inputElem.classList.add('Calendar__timeRadio');
+            inputElem.addEventListener('click', () => {
+                confirmationPopup.changeInfo(dateRow, timeRow);
+                confirmationPopup.open();
+            })
 
-            tdElem.appendChild(inputElem);
+            labelElem.appendChild(inputElem);
+
+            const labelTextElem = document.createElement('span');
+            const labelTextElemHours = document.createElement('span');
+            labelTextElemHours.classList.add('Calendar__timeLabel--Hours');
+            const labelTextElemMinutes = document.createElement('span');
+            labelTextElemMinutes.classList.add('Calendar__timeLabel--Minutes');
+            const [hours, minutes] = timeRow.split(':');
+            labelTextElemHours.innerHTML = hours;
+            labelTextElemMinutes.innerHTML = minutes;
+            // labelTextElem.innerHTML = timeRow;
+            labelTextElem.classList.add('Calendar__timeLabel');
+            labelTextElem.appendChild(labelTextElemHours);
+            labelTextElem.appendChild(labelTextElemMinutes);
+            labelElem.appendChild(labelTextElem);
+
+            tdElem.appendChild(labelElem);
 
             rowElem.appendChild(tdElem);
         })
@@ -43,9 +67,6 @@ function generateCalendarHTML(data) {
     const theadElem = document.createElement('thead');
 
     const trElem = document.createElement('tr');
-
-    const thElem = document.createElement('th');
-    trElem.appendChild(thElem); // gap cell
 
     dateSet.forEach((date) => {
         const thElem = document.createElement('th');

@@ -1,24 +1,16 @@
 @import "base.css";
-@import "radio.css";
 @import "button.css";
 @import "checkbox.css";
 @import "Calendar.css";
 @import "DryingMachine.css";
+@import "ConfirmationPopup.css";
 
 :root {
-    --text_invert: white;
-    --text_primary: #020f26;
-    --text_secondary: white;
-    --bg_primary: white;
-    --accent: #769cff;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text_invert: white;
-        --text_primary: #d8e7ff;
-        --text_secondary: #7795c5;
-        --bg_primary: #071c38;
-        --accent: #557ad3;
-    }
+    --bg_highlight: #545b6c;
+    --bg_disable: #262d36;
+    --text_invert: #F7F8F8;
+    --text_primary: #d8e7ff;
+    --text_secondary: #64627B;
+    --bg_primary: #071c38;
+    --accent: #4F52B4;
 }

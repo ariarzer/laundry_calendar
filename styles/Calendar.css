@@ -12,7 +12,7 @@ table {
     align-items: center;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .Calendar__dateHead {
         writing-mode: tb-rl;
     }
@@ -22,10 +22,60 @@ table {
 }
 
 .Calendar__dayName {
-    font-size: 0.8em;
+    font-weight: bold;
 }
 
 .Calendar__dayDate {
-    font-size: 0.5em;
+    font-size: 0.6em;
     line-height: 0.5;
+    font-weight: lighter;
+}
+
+.Calendar__timeSlot .Calendar__timeRadio {
+    appearance: none;
+    height: 0;
+    width: 0;
+    position: absolute;
+}
+
+.Calendar__timeLabel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em 0.7em;
+    border-radius: 0.2em;
+    color: var(--text_invert);
+    background-color: var(--accent);
+    cursor: pointer;
+    font-weight: lighter;
+}
+
+.Calendar__timeRadio:disabled + .Calendar__timeLabel {
+    background-color: var(--bg_disable);
+    color: transparent;
+    cursor: not-allowed;
+}
+
+.Calendar__timeRadio:checked + .Calendar__timeLabel {
+    background-color: var(--accent);
+}
+
+.Calendar__timeLabel--Minutes,
+.Calendar__timeLabel--Hours {
+    font-size: 0.8em;
+}
+
+.Calendar__timeLabel--Minutes::before {
+    content: ":";
+}
+
+@media (max-width: 500px) {
+    .Calendar__timeLabel--Minutes::before {
+        content: "";
+    }
+
+    .Calendar__timeLabel--Minutes {
+        align-self: flex-start;
+        font-size: 0.4em;
+    }
 }
