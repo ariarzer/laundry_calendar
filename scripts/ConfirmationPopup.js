@@ -10,12 +10,15 @@ class ConfirmationPopup {
         this.timeElem = this.elem.querySelector('.ConfirmationPopup__time');
     }
 
-    open() {
+    open(closeCallback) {
+        if (closeCallback) {
+          this.closeCallback = closeCallback
+        }
         this.elem.classList.toggle('ConfirmationPopup--open');
 
         this.escapeHandler = (event) => {
             if(event.key === 'Escape') {
-                this.close();
+                this.close(closeCallback);
             }
         }
 
@@ -25,6 +28,9 @@ class ConfirmationPopup {
     close() {
         document.removeEventListener('keydown', this.escapeHandler);
         this.elem.classList.toggle('ConfirmationPopup--open');
+        if (this.closeCallback) {
+            this.closeCallback();
+        }
     }
 
     changeInfo(date, time) {

@@ -4,6 +4,8 @@ function generateCalendarHTML(data) {
 
     const dateSet = new Set();
 
+    const today = new Date();
+
     const bodyElem = document.createElement('tbody');
 
     const bookingPopupElem = document.getElementById('booking_popup');
@@ -37,9 +39,9 @@ function generateCalendarHTML(data) {
             const inputElem = document.createElement('input');
             inputElem.type = 'radio';
             inputElem.name = 'laundry_slot';
-            inputElem.value = value.getTime();
+            inputElem.value = new Date(value).getTime();
             inputElem.required = true;
-            inputElem.disabled = booked;
+            inputElem.disabled = booked || new Date(value) < today;
             inputElem.classList.add('Calendar__timeRadio');
             if (bookedByYou) {
                 inputElem.addEventListener('click', () => {
@@ -47,26 +49,30 @@ function generateCalendarHTML(data) {
                     changePopup.changeInfo(dateRow, timeRow);
                     changePopup.open();
                 })
-
             } else {
-                inputElem.addEventListener('click', () => {
+                inputElem.addEventListener('change', () => {
                     bookingPopup.changeInfo(dateRow, timeRow);
-                    bookingPopup.open();
+                    bookingPopup.open((() => {
+                        inputElem.checked = false;
+                    }));
                 })
             }
 
             labelElem.appendChild(inputElem);
 
+            const [hours, minutes] = timeRow.split(':');
+
             const labelTextElem = document.createElement('span');
+            labelTextElem.classList.add('Calendar__timeLabel');
+
             const labelTextElemHours = document.createElement('span');
             labelTextElemHours.classList.add('Calendar__timeLabel--Hours');
+            labelTextElemHours.innerHTML = hours;
+
             const labelTextElemMinutes = document.createElement('span');
             labelTextElemMinutes.classList.add('Calendar__timeLabel--Minutes');
-            const [hours, minutes] = timeRow.split(':');
-            labelTextElemHours.innerHTML = hours;
             labelTextElemMinutes.innerHTML = minutes;
-            // labelTextElem.innerHTML = timeRow;
-            labelTextElem.classList.add('Calendar__timeLabel');
+
             labelTextElem.appendChild(labelTextElemHours);
             labelTextElem.appendChild(labelTextElemMinutes);
             labelElem.appendChild(labelTextElem);
