@@ -8,6 +8,11 @@ class ConfirmationPopup {
         })
 
         this.timeElem = this.elem.querySelector('.ConfirmationPopup__time');
+
+        this.elem.classList.add('no_transition');
+        setTimeout(() => {
+            this.elem.classList.remove('no_transition');
+        }, 10)
     }
 
     open(closeCallback) {
