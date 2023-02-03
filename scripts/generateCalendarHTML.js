@@ -65,20 +65,13 @@ function generateCalendarHTML(data) {
             const labelTextElem = document.createElement('span');
             labelTextElem.classList.add('Calendar__timeLabel');
 
-            const labelTextElemHours = document.createElement('span');
-            labelTextElemHours.classList.add('Calendar__timeLabel--Hours');
-            labelTextElemHours.innerHTML = hours;
+            labelTextElem.innerHTML = `
+                <span class="Calendar__timeLabel--Hours">${hours}</span>
+                <span class="Calendar__timeLabel--Minutes">${minutes}</span>
+            `;
 
-            const labelTextElemMinutes = document.createElement('span');
-            labelTextElemMinutes.classList.add('Calendar__timeLabel--Minutes');
-            labelTextElemMinutes.innerHTML = minutes;
-
-            labelTextElem.appendChild(labelTextElemHours);
-            labelTextElem.appendChild(labelTextElemMinutes);
             labelElem.appendChild(labelTextElem);
-
             tdElem.appendChild(labelElem);
-
             rowElem.appendChild(tdElem);
         })
 
@@ -93,18 +86,11 @@ function generateCalendarHTML(data) {
         const thElem = document.createElement('th');
         const [dayName, dayDate] = date.split(',');
         const container = document.createElement('div');
-
-        const dayNameElem = document.createElement('span');
-        dayNameElem.classList.add('Calendar__dayName');
-        dayNameElem.innerHTML = dayName;
-        container.appendChild(dayNameElem);
-
-        const dayDateElem = document.createElement('span');
-        dayDateElem.classList.add('Calendar__dayDate');
-        dayDateElem.innerHTML = dayDate;
-        container.appendChild(dayDateElem);
-
         container.classList.add('Calendar__dateHead');
+        container.innerHTML = `
+            <span class="Calendar__dayName">${dayName}</span>
+            <span class="Calendar__dayDate">${dayDate}</span>
+        `;
 
         thElem.appendChild(container);
         trElem.appendChild(thElem);
