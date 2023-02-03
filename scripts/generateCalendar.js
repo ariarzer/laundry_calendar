@@ -1,4 +1,4 @@
-function generateCalendarHTML(data) {
+function generateCalendar(data) {
     const calendarElem = document.getElementById('calendar');
     calendarElem.innerHTML = '';
 
@@ -19,6 +19,7 @@ function generateCalendarHTML(data) {
         rowElem.classList.add('Calendar__tr');
 
         Object.keys(data[timeRow]).forEach((dateRow) => {
+            console.log(dateRow);
             const {
                 booked,
                 value,
@@ -83,16 +84,17 @@ function generateCalendarHTML(data) {
     const trElem = document.createElement('tr');
 
     dateSet.forEach((date) => {
-        const thElem = document.createElement('th');
         const [dayName, dayDate] = date.split(',');
-        const container = document.createElement('div');
-        container.classList.add('Calendar__dateHead');
-        container.innerHTML = `
-            <span class="Calendar__dayName">${dayName}</span>
-            <span class="Calendar__dayDate">${dayDate}</span>
+        console.log(date)
+
+        const thElem = document.createElement('th');
+        thElem.innerHTML = `
+            <div class="Calendar__dateHead">
+                <span class="Calendar__dayName">${dayName}</span>
+                <span class="Calendar__dayDate">${dayDate}</span>
+            </div>
         `;
 
-        thElem.appendChild(container);
         trElem.appendChild(thElem);
     })
 

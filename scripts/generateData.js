@@ -1,7 +1,13 @@
+const weekDayFormatter = new Intl.DateTimeFormat('en-GB', { weekday: 'short'});
+
+function dateFormatter(date) {
+    return `${weekDayFormatter.format(date)}, ${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}`
+}
+
+const timeFormatter = new Intl.DateTimeFormat('en-GB', { timeStyle: 'short', pattern: "{hour}:{minute}"});
+
 function generateData () {
     const data = {};
-    const dateFormatter = new Intl.DateTimeFormat('en-GB', { weekday: 'short', month: 'numeric', day: 'numeric' });
-    const timeFormatter = new Intl.DateTimeFormat('en-GB', { timeStyle: 'short', pattern: "{hour}:{minute}"});
 
     const today = new Date();
     const currentDate = new Date();
@@ -24,9 +30,7 @@ function generateData () {
         data[timeFormatter.format(currentDate)] = {};
         for (let day = 0; day < 8; day++) {
             currentDate.setDate(today.getDate() + day);
-            const dayName = dateFormatter.format(currentDate)
-                .replace('/', '.')
-                .replace(' ', ',');
+            const dayName = dateFormatter(currentDate);
             data[timeFormatter.format(currentDate)][dayName] = {
                 booked: Math.random() - 0.8 > 0,
                 bookedByYou:  Math.random() - 0.96 > 0,

@@ -1,4 +1,4 @@
-input[type='checkbox'] {
+.Checkbox {
     appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
@@ -20,22 +20,22 @@ input[type='checkbox'] {
     margin: 0;
 }
 
-input[type='checkbox']::before {
+.Checkbox::before {
     content: '✔';
     vertical-align: bottom;
     color: transparent;
 }
 
-input[type='checkbox']:checked {
+.Checkbox:checked {
     background-color: var(--accent);
     color: var(--accent);
 }
 
-input[type='checkbox']:checked:hover {
+.Checkbox:checked:hover {
     background-color: var(--accent_hover);
     color: var(--accent_hover);
 }
 
-input[type='checkbox']:checked::before {
+.Checkbox:checked::before {
     color: var(--text_primary);
 }
