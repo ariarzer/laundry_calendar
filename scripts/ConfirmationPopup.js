@@ -19,6 +19,6 @@ class ConfirmationPopup {
     }
 
     changeInfo(date, time) {
-        this.infoElem.innerHTML = `Book at ${date}, ${time}`;
+        this.infoElem.innerHTML = `Your appointment: ${date}, ${time}`;
     }
 }

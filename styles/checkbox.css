@@ -7,7 +7,7 @@ input[type='checkbox'] {
     padding: 0.1em;
     color: var(--text_primary);
 
-    border: 0.2em solid currentColor;
+    border: 0.1em solid currentColor;
     box-sizing: content-box;
     border-radius: 0.3em;
     margin: 0;
