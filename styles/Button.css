@@ -8,10 +8,18 @@
     padding: 0.5em 1.5em calc(0.5em + 1px) 1.5em;
     cursor: pointer;
     box-shadow: 0 0 0 0 currentColor;
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.2s;
 }
 
 .Button:focus-visible,
 .Button:hover {
     box-shadow: 0 0 0 1px currentColor;
 }
+
+@supports not selector(:focus-visible) {
+    .Button:focus,
+    .Button:hover {
+        box-shadow: 0 0 0 1px currentColor;
+    }
+}
+

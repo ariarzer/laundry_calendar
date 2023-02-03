@@ -1,10 +1,14 @@
 input[type='checkbox'] {
     appearance: none;
+    -webkit-appearance: none;
     cursor: pointer;
     height: 1em;
     width: 1em;
-    display: inline-block;
-    vertical-align: baseline;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    font-size: inherit;
     padding: 0.1em;
     color: var(--text_primary);
 
