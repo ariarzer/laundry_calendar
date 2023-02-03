@@ -8,6 +8,14 @@ class ConfirmationPopup {
         })
 
         this.infoElem = this.elem.querySelector('.ConfirmationPopup__info');
+
+        this.escapeHandler = (event) => {
+            if(event.key === 'Escape') {
+                this.close();
+            }
+        }
+
+        document.addEventListener('keydown', this.escapeHandler)
     }
 
     open() {
@@ -15,6 +23,7 @@ class ConfirmationPopup {
     }
 
     close() {
+        document.removeEventListener('keydown', this.escapeHandler);
         this.elem.classList.toggle('ConfirmationPopup--open');
     }
 
