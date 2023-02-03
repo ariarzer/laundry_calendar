@@ -8,10 +8,10 @@
 :root {
     --bg_highlight: #545b6c;
     --bg_disable: #262d36;
-    --text_invert: #F7F8F8;
-    --text_primary: #d8e7ff;
+    --text_primary: #F7F8F8;
     --text_error: #9A4242;
     --button_bg: #4F52B4;
     --bg_primary: #071c38;
     --accent: #4F52B4;
+    --accent_hover: #666BE2;
 }

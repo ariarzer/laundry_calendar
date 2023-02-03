@@ -4,7 +4,7 @@
     background-color: var(--button_bg);
     border: none;
     border-radius: 0.5em;
-    color: var(--text_invert);
+    color: var(--text_primary);
     padding: 0.5em 1.5em calc(0.5em + 1px) 1.5em;
     cursor: pointer;
     box-shadow: 0 0 0 0 currentColor;

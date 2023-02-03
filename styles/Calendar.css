@@ -44,10 +44,15 @@ table {
     justify-content: center;
     padding: 0.5em 0.7em;
     border-radius: 0.2em;
-    color: var(--text_invert);
+    color: var(--text_primary);
     background-color: var(--accent);
     cursor: pointer;
     font-weight: lighter;
+    transition: background-color 0.3s;
+}
+
+.Calendar__timeLabel:hover {
+    background-color: var(--accent_hover);
 }
 
 .Calendar__timeRadio:disabled + .Calendar__timeLabel {
@@ -77,5 +82,9 @@ table {
     .Calendar__timeLabel--Minutes {
         align-self: flex-start;
         font-size: 0.4em;
+    }
+
+    .Calendar__timeLabel {
+        padding: 0.3em 0.5em;
     }
 }
