@@ -6,4 +6,5 @@ button {
     border-radius: 0.5em;
     color: var(--text_invert);
     padding: 0.5em 1em calc(0.5em + 1px) 1em;
+    cursor: pointer;
 }

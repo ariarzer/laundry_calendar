@@ -57,7 +57,7 @@ table {
 }
 
 .Calendar__timeRadio:checked + .Calendar__timeLabel {
-    background-color: var(--accent);
+    box-shadow: 0 0 0 2px currentColor;
 }
 
 .Calendar__timeLabel--Minutes,

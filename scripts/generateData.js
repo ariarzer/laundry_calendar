@@ -17,7 +17,7 @@ function generateData () {
         data[timeFormatter.format(currentDate)] = {};
         for (let day = 0; day < 8; day++) {
             currentDate.setDate(today.getDate() + day);
-            const dayName = dateFormatter.format(currentDate);
+            const dayName = dateFormatter.format(currentDate).replace('/', '.');
             data[timeFormatter.format(currentDate)][dayName] = {
                 booked: Math.random() - 0.8 > 0,
                 value: currentDate,
