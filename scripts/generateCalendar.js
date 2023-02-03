@@ -1,32 +1,65 @@
-function generateCalendar(data) {
+function generateInputElement(booked, value, bookedByYou, dateKey, timeKey, bookingPopup, changePopup) {
+    const today = new Date();
+
+    const inputElem = document.createElement('input');
+    inputElem.type = 'radio';
+    inputElem.name = 'laundry_slot';
+    inputElem.value = new Date(value).getTime();
+    inputElem.required = true;
+    inputElem.disabled = booked || new Date(value) < today;
+    inputElem.classList.add('Calendar__timeRadio');
+
+    inputElem.setAttribute('data-bookedByYou', bookedByYou);
+    inputElem.setAttribute('data-timeKey', timeKey);
+    inputElem.setAttribute('data-dateKey', dateKey);
+
+    return inputElem;
+}
+
+function generateTableHeader(dateSet) {
+    const theadElem = document.createElement('thead');
+
+    const trElem = document.createElement('tr');
+
+    dateSet.forEach((date) => {
+        const [dayName, dayDate] = date.split(',');
+
+        const thElem = document.createElement('th');
+        thElem.innerHTML = `
+            <div class="Calendar__dateHead">
+                <span class="Calendar__dayName">${dayName}</span>
+                <span class="Calendar__dayDate">${dayDate}</span>
+            </div>
+        `;
+
+        trElem.appendChild(thElem);
+    })
+
+    theadElem.appendChild(trElem);
+
+    return theadElem;
+}
+
+function generateCalendar(data, bookingPopup, changePopup) {
     const calendarElem = document.getElementById('calendar');
     calendarElem.innerHTML = '';
 
     const dateSet = new Set();
 
-    const today = new Date();
-
     const bodyElem = document.createElement('tbody');
 
-    const bookingPopupElem = document.getElementById('booking_popup');
-    const changePopupElem = document.getElementById('change_popup');
-
-    const bookingPopup = new ConfirmationPopup(bookingPopupElem);
-    const changePopup = new ConfirmationPopup(changePopupElem);
-
-    Object.keys(data).forEach((timeRow) => {
+    Object.keys(data).forEach((timeKey) => {
         const rowElem = document.createElement('tr');
         rowElem.classList.add('Calendar__tr');
 
-        Object.keys(data[timeRow]).forEach((dateRow) => {
-            console.log(dateRow);
+        Object.keys(data[timeKey]).forEach((dateKey) => {
             const {
                 booked,
                 value,
                 bookedByYou
-            } = data[timeRow][dateRow];
+            } = data[timeKey][dateKey];
 
-            dateSet.add(dateRow);
+            dateSet.add(dateKey);
 
             const tdElem = document.createElement('td');
             tdElem.classList.add('Calendar__td');
@@ -37,31 +70,9 @@ function generateCalendar(data) {
                 labelElem.classList.add('Calendar__timeSlot--bookedByYou');
             }
 
-            const inputElem = document.createElement('input');
-            inputElem.type = 'radio';
-            inputElem.name = 'laundry_slot';
-            inputElem.value = new Date(value).getTime();
-            inputElem.required = true;
-            inputElem.disabled = booked || new Date(value) < today;
-            inputElem.classList.add('Calendar__timeRadio');
-            if (bookedByYou) {
-                inputElem.addEventListener('click', () => {
-                    event.preventDefault();
-                    changePopup.changeInfo(dateRow, timeRow);
-                    changePopup.open();
-                })
-            } else {
-                inputElem.addEventListener('change', () => {
-                    bookingPopup.changeInfo(dateRow, timeRow);
-                    bookingPopup.open((() => {
-                        inputElem.checked = false;
-                    }));
-                })
-            }
+            labelElem.appendChild(generateInputElement( booked, value, bookedByYou, dateKey, timeKey, bookingPopup, changePopup ));
 
-            labelElem.appendChild(inputElem);
-
-            const [hours, minutes] = timeRow.split(':');
+            const [hours, minutes] = timeKey.split(':');
 
             const labelTextElem = document.createElement('span');
             labelTextElem.classList.add('Calendar__timeLabel');
@@ -79,29 +90,8 @@ function generateCalendar(data) {
         bodyElem.appendChild(rowElem);
     })
 
-    const theadElem = document.createElement('thead');
-
-    const trElem = document.createElement('tr');
-
-    dateSet.forEach((date) => {
-        const [dayName, dayDate] = date.split(',');
-        console.log(date)
-
-        const thElem = document.createElement('th');
-        thElem.innerHTML = `
-            <div class="Calendar__dateHead">
-                <span class="Calendar__dayName">${dayName}</span>
-                <span class="Calendar__dayDate">${dayDate}</span>
-            </div>
-        `;
-
-        trElem.appendChild(thElem);
-    })
-
-    theadElem.appendChild(trElem);
-
     const tableContent = document.createDocumentFragment();
-    tableContent.appendChild(theadElem);
+    tableContent.appendChild(generateTableHeader(dateSet));
     tableContent.appendChild(bodyElem);
 
     return tableContent;
