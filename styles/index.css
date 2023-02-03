@@ -1,0 +1,11 @@
+@import "base.css";
+@import "radio.css";
+@import "button.css";
+@import "checkbox.css";
+@import "Calendar.css";
+@import "DryingMachine.css";
+
+:root {
+    --text_invert: white;
+    --accent: #769cff;
+}

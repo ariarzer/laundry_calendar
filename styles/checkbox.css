@@ -1,0 +1,27 @@
+input[type='checkbox'] {
+    appearance: none;
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    vertical-align: baseline;
+    padding: 0.1em;
+
+    border: 0.2em solid var(--accent);
+    box-sizing: content-box;
+    border-radius: 0.3em;
+    margin: 0;
+}
+
+input[type='checkbox']::before {
+    content: '✔';
+    vertical-align: bottom;
+    color: transparent;
+}
+
+input[type='checkbox']:checked {
+    background-color: var(--accent);
+}
+
+input[type='checkbox']:checked::before {
+    color: var(--text_invert);
+}

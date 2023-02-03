@@ -2,22 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laundry</title>
+    <title>Laundry booking</title>
+
+    <meta name="description" content="Book you laundry time!">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Laundry">
+    <meta property="og:description" content="Book you laundry time!">
+    <meta property="og:image" content="http://sergeychikin.ru/365/210-home/appliances/washing-machine.svg">
+
+    <link rel="icon" href="./favicons/washing-machine.svg" type="image/svg+xml">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="color-scheme" content="dark light">
+
+    <link rel="stylesheet" href="./styles/index.css">
 </head>
 <body>
     <h1>Book you laundry time!</h1>
 
     <form action="https://laundry.fi/book">
-        <table id="calendar">
+        <table id="calendar" class="Calendar">
         </table>
 
-        <label class="Field">
-            <span>I want to book drying machine :</span>
-            <input type="checkbox" name="drying_machine">
-            <span>Drying machine will be booked for half our after you laundry appointment.</span>
+        <label class="DryingMachine">
+            <span class="DryingMachine__label">I want to book drying machine :</span>
+            <input type="checkbox" name="drying_machine"class="DryingMachine__input">
+            <span class="DryingMachine__comment">Drying machine will be booked for half our after you laundry appointment.</span>
         </label>
 
         <button type="submit">Book!</button>

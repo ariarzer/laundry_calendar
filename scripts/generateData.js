@@ -15,7 +15,7 @@ function generateData () {
     for (let hour = 9; hour < 18; hour++) {
         currentDate.setHours(hour);
         data[timeFormatter.format(currentDate)] = {};
-        for (let day = 0; day < 7; day++) {
+        for (let day = 0; day < 8; day++) {
             currentDate.setDate(today.getDate() + day);
             const dayName = dateFormatter.format(currentDate);
             data[timeFormatter.format(currentDate)][dayName] = {

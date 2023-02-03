@@ -1,0 +1,20 @@
+.DryingMachine {
+    display: block;
+
+}
+
+.DryingMachine__label {
+
+}
+
+.DryingMachine__input {
+
+}
+
+.DryingMachine__comment {
+    display: none;
+}
+
+.DryingMachine__input:checked + .DryingMachine__comment {
+    display: block;
+}

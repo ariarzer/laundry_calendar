@@ -8,6 +8,7 @@ function generateCalendarHTML(data) {
 
     Object.keys(data).forEach((timeRow) => {
         const rowElem = document.createElement('tr');
+        rowElem.classList.add('Calendar__tr');
         const thElem = document.createElement('th');
         thElem.innerHTML = timeRow;
 
@@ -48,7 +49,22 @@ function generateCalendarHTML(data) {
 
     dateSet.forEach((date) => {
         const thElem = document.createElement('th');
-        thElem.innerHTML = date;
+        const [dayName, dayDate] = date.split(',');
+        const container = document.createElement('div');
+
+        const dayNameElem = document.createElement('span');
+        dayNameElem.classList.add('Calendar__dayName');
+        dayNameElem.innerHTML = dayName;
+        container.appendChild(dayNameElem);
+
+        const dayDateElem = document.createElement('span');
+        dayDateElem.classList.add('Calendar__dayDate');
+        dayDateElem.innerHTML = dayDate;
+        container.appendChild(dayDateElem);
+
+        container.classList.add('Calendar__dateHead');
+
+        thElem.appendChild(container);
         trElem.appendChild(thElem);
     })
 
