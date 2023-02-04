@@ -10,7 +10,3 @@
 .DryingMachine__comment {
     display: none;
 }
-
-/*.DryingMachine__input:checked + .DryingMachine__comment {*/
-/*    display: block;*/
-/*}*/

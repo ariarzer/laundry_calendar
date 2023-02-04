@@ -54,6 +54,12 @@
     transition: box-shadow 0.3s;
 }
 
+@media (max-width: 500px) {
+    .ConfirmationPopup__close {
+        font-weight: bold;
+    }
+}
+
 .ConfirmationPopup__close:focus-visible,
 .ConfirmationPopup__close:hover {
     box-shadow: 0 0 0 2px currentColor;

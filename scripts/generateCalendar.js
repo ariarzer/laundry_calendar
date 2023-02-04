@@ -9,7 +9,9 @@ function generateInputElement(booked, value, bookedByYou, dateKey, timeKey, book
     inputElem.disabled = booked || new Date(value) < today;
     inputElem.classList.add('Calendar__timeRadio');
 
-    inputElem.setAttribute('data-bookedByYou', bookedByYou);
+    if (bookedByYou) {
+        inputElem.setAttribute('data-bookedByYou', bookedByYou);
+    }
     inputElem.setAttribute('data-timeKey', timeKey);
     inputElem.setAttribute('data-dateKey', dateKey);
 
